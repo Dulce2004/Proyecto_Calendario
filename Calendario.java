@@ -2,38 +2,43 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Calendario {
-    private List<Actividad> actividades = new ArrayList<>();
+    private List<Actividad> actividades;
 
-    public void agregarActividad(String nombre, String fecha) {
-        Actividad actividad = new Actividad(nombre, fecha);
+    public Calendario() {
+        actividades = new ArrayList<>();
+    }
+
+    public void agregarActividad(String fecha, String hora, String descripcion) {
+        Actividad actividad = new Actividad(fecha, hora, descripcion);
         actividades.add(actividad);
     }
 
     public void mostrarActividades() {
-        for (Actividad actividad : actividades) {
-            System.out.println(actividad);
+        System.out.println("Actividades en el calendario:");
+        for (int i = 0; i < actividades.size(); i++) {
+            System.out.println((i + 1) + ". " + actividades.get(i));
         }
     }
 
-    public void modificarActividad(String nombreViejo, String nuevaFecha) {
-        for (Actividad actividad : actividades) {
-            if (actividad.getNombre().equals(nombreViejo)) {
-                actividad.setFecha(nuevaFecha);
-                System.out.println("Actividad modificada.");
-                return;
-            }
+    public void eliminarActividad(int indice) {
+        if (indice >= 0 && indice < actividades.size()) {
+            actividades.remove(indice);
+            System.out.println("Actividad eliminada correctamente.");
+        } else {
+            System.out.println("Índice de actividad inválido.");
         }
-        System.out.println("Actividad no encontrada.");
     }
 
-    public void eliminarActividad(String nombre) {
-        for (Actividad actividad : actividades) {
-            if (actividad.getNombre().equals(nombre)) {
-                actividades.remove(actividad);
-                System.out.println("Actividad eliminada.");
-                return;
-            }
+    public void modificarActividad(int indice, String nuevaFecha, String nuevaHora, String nuevaDescripcion) {
+        if (indice >= 0 && indice < actividades.size()) {
+            Actividad actividad = actividades.get(indice);
+            actividad.setFecha(nuevaFecha);
+            actividad.setHora(nuevaHora);
+            actividad.setDescripcion(nuevaDescripcion);
+            System.out.println("Actividad modificada correctamente.");
+        } else {
+            System.out.println("Índice de actividad inválido.");
         }
-        System.out.println("Actividad no encontrada.");
     }
+    
 }
