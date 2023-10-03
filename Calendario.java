@@ -40,5 +40,5 @@ public class Calendario {
             System.out.println("Índice de actividad inválido.");
         }
     }
-    
+
 }
