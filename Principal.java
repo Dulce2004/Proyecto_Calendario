@@ -4,6 +4,7 @@ public class Principal {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Usuario usuario = new Usuario();
+        Calendario calendario = new Calendario();
 
         while (true) {
             System.out.println("Menú Principal:");
@@ -23,51 +24,10 @@ public class Principal {
                     boolean sesionIniciada = usuario.iniciarSesion(nombreUsuario, contrasena);
                     if (sesionIniciada) {
                         System.out.println("Sesión iniciada con éxito.");
+                        calendario.ejecutarMenu();
+
                     } else {
                         System.out.println("Nombre de usuario o contraseña incorrectos.");
-                    }
-
-                    while (true) {
-                        System.out.println("\nMenú:");
-                        System.out.println("1. Agregar actividad");
-                        System.out.println("2. Mostrar actividades");
-                        System.out.println("3. Modificar actividad");
-                        System.out.println("4. Eliminar actividad");
-                        System.out.println("5. Salir");
-                        System.out.print("Selecciona una opción: ");
-                        int opcion2 = scanner.nextInt();
-                        scanner.nextLine(); // Consumir la nueva línea
-
-                        switch (opcion2) {
-                            case 1:
-                                System.out.print("Nombre de la actividad: ");
-                                String nombre = scanner.nextLine();
-                                System.out.print("Fecha de la actividad: ");
-                                String fecha = scanner.nextLine();
-                                calendario.agregarActividad(nombre, fecha);
-                                break;
-                            case 2:
-                                System.out.println("Actividades:");
-                                calendario.mostrarActividades();
-                                break;
-                            case 3:
-                                System.out.print("Nombre de la actividad a modificar: ");
-                                String nombreViejo = scanner.nextLine();
-                                System.out.print("Nueva fecha: ");
-                                String nuevaFecha = scanner.nextLine();
-                                calendario.modificarActividad(nombreViejo, nuevaFecha);
-                                break;
-                            case 4:
-                                System.out.print("Nombre de la actividad a eliminar: ");
-                                String nombreEliminar = scanner.nextLine();
-                                calendario.eliminarActividad(nombreEliminar);
-                                break;
-                            case 5:
-                                System.out.println("Saliendo del programa.");
-                                System.exit(0);
-                            default:
-                                System.out.println("Opción no válida.");
-                        }
                     }
 
                     break;
@@ -80,7 +40,7 @@ public class Principal {
                     System.out.println("Perfil creado con éxito.");
                     break;
                 case 3:
-                    System.out.println("Saliendo del programa. ¡Hasta luego!");
+                    System.out.println("Cerrando Sesión. ¡Hasta luego!");
                     scanner.close();
                     System.exit(0);
                     break;

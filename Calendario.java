@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Calendario {
     private List<Actividad> actividades;
@@ -41,4 +42,58 @@ public class Calendario {
         }
     }
 
+    public void ejecutarMenu() {
+
+        Calendario calendario = new Calendario();
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("Seleccione una opción:");
+            System.out.println("1. Agregar actividad");
+            System.out.println("2. Mostrar actividades");
+            System.out.println("3. Eliminar actividad");
+            System.out.println("4. Modificar actividad");
+            System.out.println("5. Salir");
+            int opcion = scanner.nextInt();
+
+            if (opcion == 5) {
+                break;
+            }
+
+            switch (opcion) {
+                case 1:
+                    System.out.print("Ingrese la fecha (dd/mm/yyyy): ");
+                    String fecha = scanner.next();
+                    System.out.print("Ingrese la hora (hh:mm): ");
+                    String hora = scanner.next();
+                    scanner.nextLine(); // Consumir la nueva línea
+                    System.out.print("Ingrese la descripción: ");
+                    String descripcion = scanner.nextLine();
+                    calendario.agregarActividad(fecha, hora, descripcion);
+                    break;
+                case 2:
+                    calendario.mostrarActividades();
+                    break;
+                case 3:
+                    System.out.print("Ingrese el número de actividad a eliminar: ");
+                    int indiceEliminar = scanner.nextInt() - 1; // Restar 1 para coincidir con el índice de la lista
+                    calendario.eliminarActividad(indiceEliminar);
+                    break;
+                case 4:
+                    System.out.print("Ingrese el número de actividad a modificar: ");
+                    int indiceModificar = scanner.nextInt() - 1; // Restar 1 para coincidir con el índice de la lista
+                    System.out.print("Ingrese la nueva fecha (dd/mm/yyyy): ");
+                    String nuevaFecha = scanner.next();
+                    System.out.print("Ingrese la nueva hora (hh:mm): ");
+                    String nuevaHora = scanner.next();
+                    scanner.nextLine(); // Consumir la nueva línea
+                    System.out.print("Ingrese la nueva descripción: ");
+                    String nuevaDescripcion = scanner.nextLine();
+                    calendario.modificarActividad(indiceModificar, nuevaFecha, nuevaHora, nuevaDescripcion);
+                    break;
+                default:
+                    System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
+            }
+        }
+    }
 }
