@@ -1,26 +1,40 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 class Actividad {
-    private String nombre;
     private String fecha;
+    private String hora;
+    private String descripcion;
 
-    public Actividad(String nombre, String fecha) {
-        this.nombre = nombre;
+    public Actividad(String fecha, String hora, String descripcion) {
         this.fecha = fecha;
-    }
-
-    public String getNombre() {
-        return nombre;
+        this.hora = hora;
+        this.descripcion = descripcion;
     }
 
     public String getFecha() {
         return fecha;
     }
 
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     @Override
     public String toString() {
-        return "Actividad: " + nombre + " Fecha: " + fecha;
+        return "Fecha: " + fecha + ", Hora: " + hora + ", Descripción: " + descripcion;
     }
 }
