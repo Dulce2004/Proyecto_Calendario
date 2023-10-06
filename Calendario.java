@@ -42,6 +42,16 @@ public class Calendario {
         }
     }
 
+    public void marcarActividadComoCompletada(int indice) {
+        if (indice >= 0 && indice < actividades.size()) {
+            Actividad actividad = actividades.get(indice);
+            actividad.marcarComoCompletada();
+            System.out.println("Actividad marcada como completada.");
+        } else {
+            System.out.println("Índice de actividad inválido.");
+        }
+    }
+
     public void ejecutarMenu() {
 
         Calendario calendario = new Calendario();
